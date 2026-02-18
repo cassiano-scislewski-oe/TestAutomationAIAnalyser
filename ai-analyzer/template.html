@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Test Automation Analysis</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+        body {
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        #header {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        #header img {
+            width:50px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            font-family: "Ubuntu", sans-serif;;
+            color: #2c3e50;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h1 {
+            border-bottom: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .status-passed {
+            color: #5ac02b;
+            font-weight: bold;
+        }
+        .status-failed {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .status-skipped {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .section {
+            margin-top: 40px;
+        }
+        p, li {
+            font-size: 1.05em;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .score {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="../ai-results/logo.png" alt="Company Logo">
+            <h1>AI-Powered Test Automation Analysis</h1>
+        </div>
+        <p>This report provides a detailed analysis of the most recent test execution. It includes a summary of all tests, identifies potential root causes for failures, highlights recurring patterns, and offers actionable recommendations for resolution.</p>
+
+        <div class="section">
+            <h2>1. Test Execution Summary</h2>
+            <p>The following table details the results of all tests from the last execution run.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Status</th>
+                        <th>Error Source Score (APP vs. AUTOMATION)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>platform-admin/create-new-tenant-form.spec.js:29:5</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/create-new-tenant-form.spec.js:109:5</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/create-new-organization-form.spec.js:27:3</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/create-new-organization-form.spec.js:45:3</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/dashboard.spec.js:23:3</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/dashboard.spec.js:30:3</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/dashboard.spec.js:41:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/dashboard.spec.js:50:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/login.spec.js:19:5</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/login.spec.js:27:5</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/login.spec.js:34:5</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/login.spec.js:41:5</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/organizations.spec.js:28:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/organizations.spec.js:42:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/organizations.spec.js:70:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/organizations.spec.js:84:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/organizations.spec.js:101:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/organizations.spec.js:111:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/organizations.spec.js:121:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/tenants.spec.js:24:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/tenants.spec.js:34:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/tenants.spec.js:44:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/tenants.spec.js:54:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/tenants.spec.js:64:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/tenants.spec.js:89:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/tenants.spec.js:107:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/tenants.spec.js:125:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/tenants.spec.js:138:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>platform-admin/tenants.spec.js:150:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-dashboard.spec.js:33:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-dashboard.spec.js:41:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-dashboard.spec.js:49:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-login.spec.js:16:5</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-login.spec.js:24:5</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-user-management.spec.js:73:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-user-management.spec.js:102:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-user-management.spec.js:115:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-user-management.spec.js:159:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-user-management.spec.js:169:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-user-management.spec.js:200:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/organization-user-management.spec.js:244:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>organization-admin/tenants.spec.js:38:5</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-dashboard.spec.js:33:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-dashboard.spec.js:41:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-dashboard.spec.js:49:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-login.spec.js:16:5</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-login.spec.js:29:5</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-user-management-form.spec.js:30:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-user-management.spec.js:75:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-user-management.spec.js:90:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-user-management.spec.js:120:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-user-management.spec.js:182:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-user-management.spec.js:194:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-user-management.spec.js:209:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>tenant-admin/tenant-user-management.spec.js:265:3</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>2. Analysis of Dependencies and Environment</h2>
+            <p>The test results exhibit a clear pattern where a small number of initial failures are followed by a large volume of skipped tests. This strongly suggests a failure in a critical setup phase, dependency, or environmental component, rather than isolated issues in each individual test.</p>
+            <ul>
+                <li><strong>Shared Component Failure:</strong> All failed tests belong to the <strong>`platform-admin`</strong> suite. This indicates that a shared resource or setup step—such as user login, session initialization, or navigation to a base page (like the dashboard)—is failing for this specific user role.</li>
+                <li><strong>Environment/Configuration Issue:</strong> The problem could stem from an incorrect configuration for the test environment. Potential causes include an invalid base URL, expired or incorrect credentials for the `platform-admin` user, or network issues preventing access to the application or its authentication service.</li>
+                <li><strong>Critical Application Bug:</strong> A severe bug on the `platform-admin` login page or the post-login dashboard could be preventing the automation from proceeding. If the dashboard fails to load essential elements, any test that depends on it will subsequently fail.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>3. Failure Patterns and Anti-patterns</h2>
+            <h3>Recurring Pattern: Cascading Failure from a Single Point</h3>
+            <p>The dominant pattern is a "fail-fast" or cascading failure scenario. The test runner likely encountered a fatal error early in the execution of the `platform-admin` tests and, as a result, skipped all remaining tests in the queue to save time and resources. This behavior is characterized by:</p>
+            <ul>
+                <li><strong>Failure Concentration:</strong> All failures are confined to the `platform-admin` module, specifically in tests related to the dashboard and creation forms (`create-new-tenant-form`, `create-new-organization-form`). These are likely the first tests to run after a login/setup step.</li>
+                <li><strong>Mass Skipped Tests:</strong> The subsequent skipping of all other tests, including those for different user roles (`organization-admin`, `tenant-admin`), confirms that the test runner aborted the execution sequence.</li>
+            </ul>
+            <h3>Identified Anti-pattern: Lack of Granular Health Checks</h3>
+            <p>While fail-fast is efficient, the current setup may lack a preliminary environment "health check." A standalone pre-test script that only verifies critical endpoints (like application availability and authentication service status) could provide a clearer, immediate signal of an environment-wide issue before the full test suite is initiated. This would differentiate infrastructure failures from application or test code failures more effectively.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Recommended Actions</h2>
+            <p>To resolve the current failures and improve the stability of the test suite, the following actions are recommended in order of priority:</p>
+            <ol>
+                <li>
+                    <strong>Investigate the `platform-admin` Setup and Login:</strong>
+                    <ul>
+                        <li>Manually attempt to log in as a `platform-admin` user on the designated test environment to confirm system accessibility and credential validity.</li>
+                        <li>Debug the `beforeAll` or `beforeEach` hooks in the `platform-admin` test files. These setup blocks are the most likely source of the initial failure.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Analyze the First Failing Test's Artifacts:</strong>
+                    <ul>
+                        <li>Examine the detailed logs, screenshots, and trace files generated for the first tests that failed (e.g., `platform-admin/create-new-tenant-form.spec.js:29:5` or `platform-admin/dashboard.spec.js:23:3`). Look for specific errors such as 4xx/5xx HTTP status codes, element not found exceptions, or JavaScript console errors.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Verify Environment Configuration:</strong>
+                    <ul>
+                        <li>Review all environment variables and configuration files (`.env`, `.json`, etc.) associated with the test execution to ensure the `BASE_URL`, `PLATFORM_ADMIN_USER`, and `PLATFORM_ADMIN_PASSWORD` are correct for the target environment.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Consolidate Issue Reporting:</strong>
+                    <ul>
+                        <li>Instead of creating separate bug reports for each failed test, create a single, high-priority ticket titled "Critical Failure in Platform Admin Module preventing test execution." This ticket should summarize the cascading failure pattern and focus the investigation on the shared setup process.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

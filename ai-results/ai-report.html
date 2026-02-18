@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Test Automation Analysis</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+        body {
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        #header {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 15px; /* Added gap for spacing between image and title */
+        }
+        #header img {
+            width:50px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            font-family: "Ubuntu", sans-serif;;
+            color: #2c3e50;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px; /* Added padding for aesthetics */
+            margin-top: 30px; /* Adjust top margin for headings */
+        }
+        h1 {
+            border-bottom: none;
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .status-passed {
+            color: #5ac02b;
+            font-weight: bold;
+        }
+        .status-failed {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .status-broken { /* Added style for BROKEN status */
+            color: #e67e22; /* Orange color for broken */
+            font-weight: bold;
+        }
+        .status-skipped {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .section {
+            margin-top: 40px;
+        }
+        p, li {
+            font-size: 1.05em;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        .score {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="../ai-results/logo.jpg" alt="Company Logo">
+            <h1>AI-Powered Test Automation Analysis</h1>
+        </div>
+        <p>This report provides a detailed analysis of the most recent test execution. It includes a summary of all tests, identifies potential root causes for failures, highlights recurring patterns, and offers actionable recommendations for resolution.</p>
+
+        <div class="section">
+            <h2>1. Test Execution Summary</h2>
+            <p>Your test suite executed a total of <strong>400 tests</strong> with the following outcomes:</p>
+            <ul>
+                <li><strong>Passed Tests:</strong> 315</li>
+                <li><strong>Failed Tests:</strong> 47</li>
+                <li><strong>Broken Tests:</strong> 10</li>
+                <li><strong>Skipped Tests:</strong> 5</li>
+            </ul>
+            <p>The following table details the results of all tests from the last execution run, excluding passed tests per request. If a test was skipped, the error source score is N/A.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Status</th>
+                        <th>Error Source Score (APP vs. AUTOMATION)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Blems/blems.cy.js#Blems Page C1550488 - Checkout with blems item for US</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/registerBike.cy.js#Service Page C1974026 - Validate Register Bike with invalid serial number for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/PLP/PLP.cy.js#PLP C1975650 - Validate Backorder details on PLP for AU</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/registerBike.cy.js#Service Page C1974026 - Validate Register Bike with invalid serial number for IT</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/orderHistory.cy.js#Transactions C1249866 - Validate Order export all lines from date range for IT</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Profile/currentStatement.cy.js#Profile C1530909 - Italian locale- Validate Client Analysis Report on Current Statement Page for IT</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Cart/moveCartItems.cy.js#Cart Page C1783037 - Move specific cart items to existing cart for IT</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/PDP/PDP.cy.js#PDP C1853471 - Validate PDP Infromation for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Cart/cart.cy.js#Cart Page C1640870 - Validate create new cart functionality for IT</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Profile/validatePayBill.cy.js#Profile C1495746 - Edit pending payments date for CA</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/PLP/quickadd.cy.js#PLP C1825285 - Validate Quick Add to Cart Items on PLP for AU</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/IMPOrderHistory.cy.js#Transactions C1685062 - Validate Order search on Completed Orders for AU</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/IMPOrderHistory.cy.js#Transactions C1685062 - Validate Order search on Completed Orders for IT</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/HomePage/header.cy.js#Home Page C1958791 - Validate Equipment category on home page for CA</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/smoke/validateBikeAndEquipment.cy.js#Smoke Test Validate E2E flow of Bike and Equipment category for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/registerBike.cy.js#Service Page C1974026 - Validate Register Bike with invalid serial number for CA</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Checkout/checkout.cy.js#Checkout Page C1342955 - Term for bikes and equipments for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/servicePDP.cy.js#Service Page C1853647 - Validate PDP Infromation for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Cart/cart.cy.js#Cart Page C1343023 - Increase and Decrease item quantity in the Cart for IT and assert the price sort order</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/serivcePartE2EFlow.cy.js#Service Page C1863254 - Validate Service Part E2E order placement for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/PLP/PLP.cy.js#PLP C1975650 - Validate Backorder details on PLP for US</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/HomePage/header.cy.js#Home Page C1958791 - Validate Equipment category on home page for AU</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Checkout/checkout.cy.js#Checkout Page C1521237 - Selecting a product and proceed to checkout page for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/PDP/PDP.cy.js#PDP C1853472 - Validate PDP Add To Cart Functionality for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Checkout/checkout.cy.js#Checkout Page C1342957 - Selecting Bike Shipping Method for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/warrentyAndSupport.cy.js#Service Page C1165821 - Validate warranty and support with search for AU</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/RMAHistory.cy.js#Transactions C1249851 - Validate RMA Search on RMAId, PO and SKU for CA</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Profile/currentStatement.cy.js#Profile C1530908 - English locale- Validate Client Analysis Report on Current Statement Page for IT</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/DropShip/dropShipE2E.cy.js#DropShip C1158741 - Validate Dropship order submit workflow for IT</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/registerBike.cy.js#Service Page C1974026 - Validate Register Bike with invalid serial number for AU</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Blems/blems.cy.js#Blems Page C1550489 - Checkout with one blems, one equipment and one bike for US</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/servicePDP.cy.js#Service Page C1853648 - Validate PDP Service Parts Filter for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/HomePage/header.cy.js#Home Page C1958791 - Validate Equipment category on home page for US</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Blems/blems.cy.js#Blems Page C1550486 - Browsing Blems in PDP for US</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Profile/validatePayBill.cy.js#Profile C1495746 - Edit pending payments date for US</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/smoke/validateBike.cy.js#Smoke Test Validate the E2E flow for Bike Category for AU</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/smoke/validateEquipment.cy.js#Smoke Test Validate E2E flow of Equipment category for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/shipmentsHistory.cy.js#Transactions C1249872 - Validate Shipment export all lines from date range for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/IMPOrderHistory.cy.js#Transactions C1685062 - Validate Order search on Completed Orders for US</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/HomePage/header.cy.js#Home Page C1958791 - Validate Equipment category on home page for IT</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/warrentyAndSupport.cy.js#Service Page C1165821 - Validate warranty and support with search for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/smoke/validateBikeAndEquipment.cy.js#Smoke Test Validate E2E flow of Bike and Equipment category for AU</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/IMPOrderHistory.cy.js#Transactions C1685062 - Validate Order search on Completed Orders for CA</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/IMPOrderHistory.cy.js#Transactions C1685062 - Validate Order search on Completed Orders for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/warrentyAndSupport.cy.js#Service Page C1165821 - Validate warranty and support with search for AU</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/shipmentsHistory.cy.js#Transactions C1249872 - Validate Shipment export all lines from date range for AU</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/orderHistory.cy.js#Transactions C1249866 - Validate Order export all lines from date range for US</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Favorite/favoriteList.cy.js#Favorites List C1946170 - Add items to cart from Favorites List for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/IMPOrderHistory.cy.js#Transactions C1685062 - Validate Order search on Completed Orders for US</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/warrentyAndSupport.cy.js#Service Page C1165821 - Validate warranty and support with search for NL</td>
+                        <td class="status-failed">FAILED</td>
+                        <td class="score">APP: 60% / AUTOMATION: 40%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/DropShip/dropShipE2E.cy.js#DropShip C1975015 - Validate Dropship orders records after placing order for CA</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Profile/validatePayBill.cy.js#Profile C1495019 - Pay a bill with non saved credit card for CA</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/DropShip/dropShipE2E.cy.js#DropShip C1975015 - Validate Dropship orders records after placing order for IT</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Profile/validatePayBill.cy.js#Profile C1495019 - Pay a bill with non saved credit card for US</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/DropShip/dropShipE2E.cy.js#DropShip C1975015 - Validate Dropship orders records after placing order for NL</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/PLP/PLP.cy.js#PLP C1521238 - Applying multiple filters one by one for IT</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/backordersHistory.cy.js#Transactions C1643232 - Validate Backorder export/download functionality for US</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/PLP/PLP.cy.js#PLP C1521238 - Applying multiple filters one by one for NL</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/DropShip/dropShipE2E.cy.js#DropShip C1975015 - Validate Dropship orders records after placing order for US</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/DropShip/dropShipE2E.cy.js#DropShip C1975015 - Validate Dropship orders records after placing order for AU</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Transaction/shipmentsHistory.cy.js#Transactions C1241857 - Validate Shipment Search on shipment, PO, Tracking and SKU for AU</td>
+                        <td class="status-broken">BROKEN</td>
+                        <td class="score">APP: 80% / AUTOMATION: 20%</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/warrentyAndSupport.cy.js#Service Page C1140937 - Validate Start new case for warranty and support for AU</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/warrentyAndSupport.cy.js#Service Page C1140937 - Validate Start new case for warranty and support for NL</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/warrentyAndSupport.cy.js#Service Page C1140937 - Validate Start new case for warranty and support for US</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/warrentyAndSupport.cy.js#Service Page C1140937 - Validate Start new case for warranty and support for IT</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                    <tr>
+                        <td>cypress/e2e/frontEnd/Service/warrentyAndSupport.cy.js#Service Page C1140937 - Validate Start new case for warranty and support for CA</td>
+                        <td class="status-skipped">SKIPPED</td>
+                        <td class="score">N/A</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>2. Errors that could be solved by fixing other components</h2>
+            <p>A detailed analysis of the failed and broken tests reveals several issues that likely stem from shared components, environmental dependencies, or broader application defects rather than isolated test script errors. These errors impact multiple test cases, often across different locales, pointing to systemic issues:</p>
+            <ul>
+                <li>
+                    <strong>Service / Register Bike Functionality (Test ID: C1974026):</strong> This test consistently failed across NL, IT, CA, US, and AU for "Validate Register Bike with invalid serial number". This strongly suggests a problem with the backend validation logic for serial numbers or an unexpected change in the expected invalid input/response, affecting a core service feature.
+                </li>
+                <li>
+                    <strong>Transactions / Order History (Test ID: C1685062 & C1249866):</strong> Failures for "Validate Order search on Completed Orders" (AU, IT, CA, NL, US) and "Validate Order export all lines from date range" (IT, US) point to potential issues within the order history module. This could be due to data inconsistencies, a broken search API, or changes in the UI rendering of historical orders, or the export functionality itself.
+                </li>
+                <li>
+                    <strong>HomePage / Header Category Display (Test ID: C1958791):</strong> Failures for "Validate Equipment category on home page" across CA, AU, US, and IT indicate a widespread issue with how main navigation categories are rendered or linked, possibly due to recent UI updates or data configuration affecting multiple storefronts.
+                </li>
+                <li>
+                    <strong>DropShip Module Failures (Test IDs: C1975015 & C1158741):</strong> A significant cluster of tests related to DropShip functionality are marked as BROKEN (C1975015 for CA, IT, NL, AU, US; C1158741 for IT). The "BROKEN" status often implies a more severe underlying issue that prevents the test from executing correctly, such as critical API endpoint failures, missing configurations, or substantial changes to the DropShip service itself. This is highly indicative of a system-level problem.
+                </li>
+                <li>
+                    <strong>Checkout Flow (NL Locale specific):</strong> Multiple failures in the Checkout module ("Term for bikes and equipments", "Selecting a product and proceed to checkout page", "Selecting Bike Shipping Method") are observed specifically for the NL locale. This suggests a localization-specific issue or recent regression in the checkout configuration or logic unique to the Netherlands.
+                </li>
+                <li>
+                    <strong>Profile / Current Statement Report (Test IDs: C1530909 & C1530908):</strong> Failures related to "Validate Client Analysis Report on Current Statement Page" for IT locale (both Italian and English locales) point to a bug in report generation or display within the user profile section for Italian accounts.
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>3. Failure Patterns and Anti-patterns</h2>
+            <h3>Recurring Patterns:</h3>
+            <ul>
+                <li>
+                    <strong>Cross-Locale Functional Regression:</strong> The most prominent pattern is the failure of the *same test case ID* (e.g., C1974026, C1685062, C1958791) across multiple geographical locales (US, AU, CA, IT, NL). This strongly suggests a regression in a core, shared application feature or a fundamental localization component, rather than isolated automation errors specific to one locale.
+                </li>
+                <li>
+                    <strong>Module-Wide Instability (DropShip, Order History, Register Bike):</strong> Specific modules, such as DropShip, Transaction History, and Service/Register Bike, exhibit multiple failures. This indicates areas of the application that may have recently undergone significant changes, lack sufficient test coverage, or suffer from underlying architectural instability.
+                </li>
+                <li>
+                    <strong>Early & Hard Stops (BROKEN status):</strong> Tests marked as 'BROKEN', particularly within the DropShip module, often suggest a critical setup failure or an environmental issue that prevents the test from proceeding past initial steps. These are typically more severe than 'FAILED' tests, which might encounter an assertion failure later in the flow.
+                </li>
+            </ul>
+
+            <h3>Anti-patterns:</h3>
+            <ul>
+                <li>
+                    <strong>Lack of Granular Error Isolation:</strong> While the test names indicate specific features, the widespread nature of failures for the same test IDs across locales hints at a potential lack of granular error messages or diagnostic data that clearly differentiates application bugs from environmental or test data issues.
+                </li>
+                <li>
+                    <strong>Insufficient Pre-Test Health Checks:</strong> The presence of multiple 'BROKEN' tests and recurring functional regressions across locales suggests that the test suite might not be adequately validating critical external dependencies, backend service availability, or core environment configurations *before* commencing the full execution. This leads to wasted test execution time on already compromised environments.
+                </li>
+                <li>
+                    <strong>Brittle Test Data/Environment Configuration:</strong> Many failures related to "invalid serial number", "export lines from date range", or "completed orders" imply that the test data or environment configurations might be fragile and susceptible to changes, leading to unexpected test outcomes.
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>4. Recommended Actions</h2>
+            <p>To address the identified failures and enhance the overall reliability and efficiency of the test automation suite, the following actions are recommended:</p>
+            <ol>
+                <li>
+                    <strong>Prioritize Cross-Locale Regression Investigation:</strong>
+                    <ul>
+                        <li>Immediately investigate the root cause of failures for test cases C1974026 (Register Bike), C1685062 (Order Search on Completed Orders), and C1958791 (Equipment Category on Home Page) across all affected locales. These are high-impact regressions in core functionalities.</li>
+                        <li>Focus on recent code changes to shared libraries, localization frameworks, or global configuration settings that could explain widespread impact.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Critical Deep Dive into DropShip Module (BROKEN Tests):</strong>
+                    <ul>
+                        <li>The 'BROKEN' status on DropShip tests (C1975015, C1158741) signals a severe issue. Immediately verify the health and functionality of the DropShip backend services, external integrations, and related configurations for all locales.</li>
+                        <li>Review server logs for any unhandled exceptions or critical errors related to DropShip order processing or data retrieval.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Enhance Checkout Stability for NL Locale:</strong>
+                    <ul>
+                        <li>Investigate the specific checkout failures related to the NL locale (C1342955, C1521237, C1342957). This might be a localized configuration error, a data issue, or a bug unique to the NL storefront.</li>
+                        <li>Collaborate with the NL localization team or product owner to understand recent changes.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Implement Robust Pre-Test Environment Health Checks:</strong>
+                    <ul>
+                        <li>Introduce a dedicated, lightweight automation suite that runs before the main test execution. This suite should verify the availability and basic functionality of critical components such as:
+                            <ul>
+                                <li>Application login for various user roles.</li>
+                                <li>Key API endpoints (e.g., for Order History, DropShip services).</li>
+                                <li>Database connectivity for test data integrity.</li>
+                            </ul>
+                        </li>
+                        <li>If any of these health checks fail, the main test suite should be aborted, providing immediate and clear feedback on environment readiness.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Review and Fortify Test Data Management:</strong>
+                    <ul>
+                        <li>For tests relying on specific data states (e.g., "invalid serial number", "completed orders for export", "pending payments date"), ensure test data is consistently set up and maintained across environments.</li>
+                        <li>Consider dynamic test data generation or a more resilient test data seeding strategy that is less prone to external changes.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Improve Failure Diagnostics:</strong>
+                    <ul>
+                        <li>Ensure the test framework captures comprehensive diagnostic artifacts for every failure, including detailed error messages, stack traces, screenshots, video recordings (if available), and network requests/responses. This will help distinguish between application and automation code issues more rapidly.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

@@ -3,6 +3,8 @@ import { GoogleGenAI } from "@google/genai";
 import * as fs from 'fs/promises'; // We'll use promises for async I/O operations
 import * as path from 'path';
 
+
+
 // Gemini SDK (using the new '@google/genai' library)
 // It will automatically fetch the GEMINI_API_KEY from the environment variable.
 // **SECURITY FIX:** Do not hardcode your key. Use environment variables.

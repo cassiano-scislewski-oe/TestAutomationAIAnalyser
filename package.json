@@ -1,0 +1,11 @@
+{
+  "name": "test-automation-ai-analyser",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "analyze": "node ai-analyzer/ai.js"
+  },
+  "dependencies": {
+    "@google/genai": "^1.0.0"
+  }
+}

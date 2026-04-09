@@ -9,7 +9,7 @@ import * as path from 'path';
 // It will automatically fetch the GEMINI_API_KEY from the environment variable.
 // **SECURITY FIX:** Do not hardcode your key. Use environment variables.
 // Run the script with: GEMINI_API_KEY="YOUR_KEY_HERE" node ai.js
-const ai = new GoogleGenAI({apiKey: '{{YOUR_KEY_HERE}}'});
+const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
 
 // We'll use 'gemini-2.5-pro' for better reasoning and HTML structuring
 const MODEL_NAME = 'gemini-2.5-pro';
